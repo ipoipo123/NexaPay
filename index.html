@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#f6f8fc">
+  <meta name="description" content="NexaPay digital wallet demo">
+  <title>NexaPay — Digital Wallet</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <a id="skipLink" class="skip-link" href="#loginUsername">Skip to sign in</a>
+  <div id="toast" role="status" aria-live="polite" aria-atomic="false"></div>
+
+  <!-- AUTH -->
+  <section id="authScreen" class="auth-screen">
+    <div class="auth-shell">
+      <div class="auth-showcase">
+        <div class="auth-brand">
+          <div class="brand-mark"><span>N</span><i>✦</i></div>
+          <div>
+            <h1>NexaPay</h1>
+            <p>Simple money. Smarter moves.</p>
+          </div>
+        </div>
+        <div class="showcase-copy">
+          <span class="showcase-kicker"><i></i> YOUR EVERYDAY WALLET</span>
+          <h2>Make every<br>move <em>count.</em></h2>
+          <p>One simple place to add money, send it to the people you know, and keep track of what matters.</p>
+        </div>
+        <div class="showcase-card" aria-hidden="true">
+          <div class="showcase-card-top"><span class="showcase-card-mark">N<span>✦</span></span><span>PERSONAL WALLET</span></div>
+          <div class="showcase-card-lines"><i></i><i></i><i></i><i></i></div>
+          <div class="showcase-card-bottom"><span>READY WHEN YOU ARE</span><b>•••• &nbsp; •••• &nbsp; •••• &nbsp; 2048</b></div>
+          <span class="showcase-orbit orbit-one"></span><span class="showcase-orbit orbit-two"></span>
+        </div>
+        <div class="showcase-foot"><span class="foot-check">✓</span> Built for simple, everyday money moves</div>
+      </div>
+
+      <div class="auth-card">
+        <div class="auth-heading">
+          <span class="auth-overline">WELCOME TO NEXAPAY</span>
+          <h2 id="authHeading">Good to have you here</h2>
+          <p id="authSubheading">Sign in or create an account to get started.</p>
+        </div>
+        <div class="auth-tabs" role="tablist" aria-label="Account access">
+          <button id="loginTab" class="tab active" type="button" role="tab" aria-controls="loginForm" aria-selected="true" data-auth="login">Log in</button>
+          <button id="registerTab" class="tab" type="button" role="tab" aria-controls="registerForm" aria-selected="false" data-auth="register">Create account</button>
+        </div>
+
+        <form id="loginForm" class="auth-form" role="tabpanel" aria-labelledby="loginTab">
+          <label for="loginUsername">Username</label>
+          <input id="loginUsername" required autocomplete="username" placeholder="Enter your username">
+          <label for="loginPassword">Password</label>
+          <input id="loginPassword" type="password" required autocomplete="current-password" placeholder="Enter your password">
+          <button class="primary full" type="submit">Log in <span aria-hidden="true">→</span></button>
+          <div class="demo-box"><span class="demo-icon">i</span><span>Demo login <b>student</b> · Password <b>1234</b> · PIN <b>1234</b></span></div>
+        </form>
+
+        <form id="registerForm" class="auth-form hidden" role="tabpanel" aria-labelledby="registerTab">
+          <label for="regName">Full name</label>
+          <input id="regName" required maxlength="40" autocomplete="name" placeholder="Your full name">
+          <label for="regUsername">Username</label>
+          <input id="regUsername" required maxlength="20" pattern="[A-Za-z0-9_]+" autocomplete="username" placeholder="Letters, numbers, underscore">
+          <label for="regPassword">Password</label>
+          <input id="regPassword" type="password" minlength="4" required autocomplete="new-password" placeholder="At least 4 characters">
+          <label for="regPin">4-digit wallet PIN</label>
+          <input id="regPin" type="password" inputmode="numeric" maxlength="4" pattern="[0-9]{4}" required placeholder="Enter a 4-digit PIN">
+          <button class="primary full" type="submit">Create account <span aria-hidden="true">→</span></button>
+        </form>
+        <div class="auth-secure"><span>▣</span> Your demo account stays in this browser</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- APP -->
+  <section id="appScreen" class="app hidden">
+    <aside class="sidebar">
+      <div class="side-brand">
+        <div class="brand-mark small"><span>N</span><i>✦</i></div>
+        <div><b>NexaPay</b><small>Digital Wallet</small></div>
+      </div>
+
+      <div class="user-mini">
+        <div id="avatar" class="avatar">N</div>
+        <div><b id="sideName">User</b><small id="sideUsername">@user</small></div>
+      </div>
+
+      <nav aria-label="Main navigation">
+        <span class="nav-label">OVERVIEW</span>
+        <button class="nav-item active" type="button" aria-current="page" data-page="dashboard"><span class="nav-icon" aria-hidden="true">⌂</span><span>Dashboard</span></button>
+        <span class="nav-label nav-label-spaced">MONEY MOVES</span>
+        <button class="nav-item" type="button" data-page="add"><span class="nav-icon" aria-hidden="true">＋</span><span>Add money</span></button>
+        <button class="nav-item" type="button" data-page="send"><span class="nav-icon" aria-hidden="true">↗</span><span>Send money</span></button>
+        <button class="nav-item" type="button" data-page="withdraw"><span class="nav-icon" aria-hidden="true">↙</span><span>Withdraw</span></button>
+        <button class="nav-item" type="button" data-page="qr"><span class="nav-icon" aria-hidden="true">▦</span><span>My QR</span></button>
+        <span class="nav-label nav-label-spaced">ACCOUNT</span>
+        <button class="nav-item" type="button" data-page="transactions"><span class="nav-icon" aria-hidden="true">☷</span><span>Transactions</span></button>
+        <button class="nav-item" type="button" data-page="profile"><span class="nav-icon" aria-hidden="true">♙</span><span>My profile</span></button>
+      </nav>
+
+      <div class="sidebar-foot"><span class="sidebar-foot-mark">N</span><span>Spend thoughtfully.<small>NexaPay demo wallet</small></span></div>
+    </aside>
+
+    <main class="main" id="mainContent" tabindex="-1">
+      <header class="topbar">
+        <div>
+          <span class="eyebrow">NexaPay Wallet</span>
+          <h2 id="pageTitle">Dashboard</h2>
+        </div>
+        <div class="top-actions"><div class="top-user"><div class="top-user-copy"><small>Welcome back,</small><span id="topName">User</span></div><div id="topAvatar" class="avatar" aria-hidden="true">N</div></div><button id="logoutBtn" class="logout" type="button"><span aria-hidden="true">↪</span><b>Log out</b></button></div>
+      </header>
+
+      <!-- DASHBOARD -->
+      <div id="page-dashboard" class="page">
+        <div class="dashboard-heading">
+          <div><span class="eyebrow">YOUR MONEY, AT A GLANCE</span><h1>Welcome, <span id="greetingName">there</span></h1><p>Here’s what’s happening with your wallet today.</p></div>
+          <span class="today-pill"><i aria-hidden="true"></i> Wallet active</span>
+        </div>
+        <div class="hero-card">
+          <div class="hero-content">
+            <div class="balance-label"><span class="balance-dot"></span> Available balance</div>
+            <h2 id="dashBalance">₱0.00</h2>
+            <div class="hero-bottom"><span class="hero-owner">NexaPay personal wallet</span><span class="hero-status"><i></i> Ready to use</span></div>
+          </div>
+          <div class="hero-art" aria-hidden="true"><span class="hero-orbit hero-orbit-a"></span><span class="hero-orbit hero-orbit-b"></span><div class="wallet-chip"><span class="chip-mark">N<i>✦</i></span><span class="chip-name">NEXAPAY</span><b>WALLET</b></div></div>
+        </div>
+
+        <div class="quick-heading"><div><h2>What would you like to do?</h2><p>Fast, simple access to your wallet.</p></div><span class="quick-heading-note">QUICK ACTIONS</span></div>
+        <div class="quick-grid">
+          <button class="quick quick-add" type="button" data-go="add"><span class="quick-icon" aria-hidden="true">＋</span><b>Add money</b><small>Top up your wallet</small><i aria-hidden="true">↗</i></button>
+          <button class="quick quick-send" type="button" data-go="send"><span class="quick-icon" aria-hidden="true">↗</span><b>Send money</b><small>Transfer to a user</small><i aria-hidden="true">↗</i></button>
+          <button class="quick quick-withdraw" type="button" data-go="withdraw"><span class="quick-icon" aria-hidden="true">↙</span><b>Withdraw</b><small>Cash out demo funds</small><i aria-hidden="true">↗</i></button>
+          <button class="quick quick-qr" type="button" data-go="qr"><span class="quick-icon" aria-hidden="true">▦</span><b>Receive money</b><small>Show your QR code</small><i aria-hidden="true">↗</i></button>
+        </div>
+
+        <div class="grid-2">
+          <section class="panel">
+            <div class="panel-head"><div><span class="panel-kicker">YOUR WALLET ACTIVITY</span><h3>Recent transactions</h3></div><button class="link" data-go="transactions">View all <span>→</span></button></div>
+            <div id="recentTransactions"></div>
+          </section>
+          <section class="panel tip">
+            <div class="tip-top"><div class="tip-icon">✦</div><span class="tip-badge">NEXAPAY NOTE</span></div>
+            <h3>Keep your wallet yours</h3>
+            <p>Money actions ask for your wallet PIN, so take a moment to check the details before you confirm.</p>
+            <div class="tip-divider"></div>
+            <small>This demo saves account data in your browser. Never reuse a real password or PIN here.</small>
+          </section>
+        </div>
+      </div>
+
+      <!-- ADD -->
+      <div id="page-add" class="page hidden">
+        <section class="form-panel narrow">
+          <div class="section-icon">＋</div>
+          <h2>Add Money</h2>
+          <p class="muted">Add demo funds to your wallet.</p>
+          <label for="addAmount">Amount</label>
+          <input id="addAmount" class="big-input" type="number" min="1" max="1000000" step="0.01" inputmode="decimal" placeholder="0.00" aria-label="Amount to add in Philippine pesos">
+          <div class="amounts">
+            <button type="button" data-amount="100" aria-pressed="false">₱100</button><button type="button" data-amount="200" aria-pressed="false">₱200</button>
+            <button type="button" data-amount="500" aria-pressed="false">₱500</button><button type="button" data-amount="1000" aria-pressed="false">₱1,000</button>
+          </div>
+          <button id="addMoneyBtn" class="primary full">Add to Wallet</button>
+        </section>
+      </div>
+
+      <!-- SEND -->
+      <div id="page-send" class="page hidden">
+        <section class="form-panel narrow">
+          <div class="section-icon">↗</div>
+          <h2>Send Money</h2>
+          <p class="muted">Transfer funds to another registered NexaPay user.</p>
+          <label for="sendRecipient">Recipient username</label>
+          <input id="sendRecipient" autocomplete="off" placeholder="@username">
+          <label for="sendAmount">Amount</label>
+          <input id="sendAmount" class="big-input" type="number" min="1" max="1000000" step="0.01" inputmode="decimal" placeholder="0.00" aria-label="Amount to send in Philippine pesos">
+          <div class="balance-note">Your balance: <b id="sendBalance">₱0.00</b></div>
+          <button id="sendMoneyBtn" class="primary full">Continue & Confirm</button>
+        </section>
+      </div>
+
+      <!-- WITHDRAW -->
+      <div id="page-withdraw" class="page hidden">
+        <section class="form-panel narrow">
+          <div class="section-icon">↙</div>
+          <h2>Withdraw</h2>
+          <p class="muted">Simulate a cash-out from your NexaPay wallet.</p>
+          <label for="withdrawAmount">Amount</label>
+          <input id="withdrawAmount" class="big-input" type="number" min="1" max="1000000" step="0.01" inputmode="decimal" placeholder="0.00" aria-label="Amount to withdraw in Philippine pesos">
+          <div class="balance-note">Available: <b id="withdrawBalance">₱0.00</b></div>
+          <button id="withdrawBtn" class="primary full">Continue & Confirm</button>
+        </section>
+      </div>
+
+      <!-- QR -->
+      <div id="page-qr" class="page hidden">
+        <section class="qr-layout">
+          <div class="panel qr-card qr-print-target">
+            <span class="eyebrow">Receive money</span>
+            <h2>My NexaPay QR</h2>
+            <p class="muted">Let another user scan or enter your username.</p>
+            <div id="qrcode"></div>
+            <div class="qr-user" id="qrUsername">@user</div>
+            <button id="downloadQR" class="secondary">Print QR Card</button>
+          </div>
+          <div class="panel">
+            <h3>How it works</h3>
+            <ol class="steps">
+              <li>Open your My QR page.</li>
+              <li>Show your QR to another user.</li>
+              <li>The sender can use your username.</li>
+              <li>Confirm the amount with their PIN.</li>
+            </ol>
+            <div class="notice">QR payments are simulated in this front-end school project.</div>
+          </div>
+        </section>
+      </div>
+
+      <!-- TRANSACTIONS -->
+      <div id="page-transactions" class="page hidden">
+        <section class="panel">
+          <div class="panel-head"><div><h2>Transaction History</h2><p class="muted">All activity for your wallet.</p></div><button id="clearTransactions" class="danger-outline">Clear History</button></div>
+          <div class="table-wrap">
+            <table><thead><tr><th>Type</th><th>Details</th><th>Amount</th><th>Date</th></tr></thead><tbody id="transactionTable"></tbody></table>
+          </div>
+        </section>
+      </div>
+
+      <!-- PROFILE -->
+      <div id="page-profile" class="page hidden">
+        <section class="profile-grid">
+          <div class="panel profile-card">
+            <div id="profileAvatar" class="profile-avatar">N</div>
+            <h2 id="profileName">User</h2><p id="profileUsername" class="muted">@user</p>
+            <span class="status-pill">● Verified Demo Account</span>
+          </div>
+          <div class="panel">
+            <h3>Account Details</h3>
+            <div class="detail"><span>Account type</span><b>Personal Wallet</b></div>
+            <div class="detail"><span>Wallet balance</span><b id="profileBalance">₱0.00</b></div>
+            <div class="detail"><span>Total transactions</span><b id="profileCount">0</b></div>
+            <div class="detail"><span>Security</span><b>4-digit PIN</b></div>
+            <hr>
+            <h3>About NexaPay</h3>
+            <p class="muted">A front-end e-wallet prototype designed for a school performance task. It demonstrates account creation, multiple users, transfers, balance management, transaction records, PIN confirmation, QR receiving and printable receipts.</p>
+          </div>
+        </section>
+      </div>
+    </main>
+  </section>
+
+  <!-- PIN MODAL -->
+  <div id="pinModal" class="modal hidden" role="dialog" aria-modal="true" aria-labelledby="pinDialogTitle" aria-describedby="pinMessage">
+    <div class="modal-card">
+      <button class="modal-close" id="closeModal" type="button" aria-label="Close PIN confirmation">×</button>
+      <div class="lock" aria-hidden="true">⌁</div>
+      <h2 id="pinDialogTitle">Confirm transaction</h2>
+      <p class="muted" id="pinMessage">Enter your 4-digit wallet PIN.</p>
+      <input id="confirmPin" class="pin-input" type="password" inputmode="numeric" autocomplete="off" maxlength="4" placeholder="••••" aria-label="4-digit wallet PIN">
+      <button id="confirmPinBtn" class="primary full" type="button">Confirm</button>
+    </div>
+  </div>
+
+  <!-- RECEIPT MODAL -->
+  <div id="receiptModal" class="modal hidden" role="dialog" aria-modal="true" aria-labelledby="receiptDialogTitle">
+    <div class="modal-card receipt">
+      <button class="modal-close" id="closeReceipt" type="button" aria-label="Close receipt">×</button>
+      <div class="receipt-logo" aria-hidden="true">N✦</div>
+      <h2 id="receiptDialogTitle">NexaPay receipt</h2>
+      <div id="receiptContent"></div>
+      <div class="receipt-actions">
+        <button id="printReceipt" class="primary" type="button">Print receipt</button>
+        <button id="closeReceipt2" class="secondary" type="button">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- QR library for the demo -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
